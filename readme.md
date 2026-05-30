@@ -9,12 +9,14 @@ However, the dyno controller and r19e ECU are approximately `3-4 meters` apart a
 
 ## Circuit Topology
 
+<!-- 
 The r19e ECU sends a `0-3.3V` PWM signal to the conditioning board where it is first filtered through an RC filter to remove any line transients. Then a Schmitt trigger (74HC14) boosts the signal to `5V` while also cleaning the leading edge. The signal is then passed to the AM26LS31AC which transmits it as (+signal, -signal).
 
 The differential signal then reaches the dyno receiver/isolator, where the differential signal is first passed through two 6n137 (one for each signal). After which, the signal is processed by the AM26LS32AC which returns a single signal that is boosted from `5V to 10V` using a UA741 and then sent to the dyno controller.
 
 > [!note]
 > To produce 5V on the dyno board, the l78050V linear regulator is used.
+!-->
 
 Analysis, schematics & boards can be found [here](ecu-side) & [here](dyno-side).
 
