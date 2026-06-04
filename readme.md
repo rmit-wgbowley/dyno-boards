@@ -15,8 +15,7 @@ For example the rpm over time could be modelled as this arbitrary function,
 
 $$RPM(t) = \frac{A}{1 + e^{-b(t-c)}}$$
 
-
-and then it simply would be transformed into a simple lookup table assuming `A` is dyno max rpm:
+And then it would simply be transformed into a simple lookup table, assuming A is the dyno's max RPM:
 
 | Step | Time ($t$ in seconds) | Target RPM | r19e ECU Output (V) | Dyno Controller Input (V) |
 | :--- | :---: | :---: | :---: | :---: |
