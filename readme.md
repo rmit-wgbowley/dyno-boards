@@ -16,7 +16,7 @@ For example the rpm over time could be modelled as this arbitrary function,
 $$RPM(t) = \frac{A}{1 + e^{-b(t-c)}}$$
 
 
-and then it simply would be transformed into a simple lookup table:
+and then it simply would be transformed into a simple lookup table assuming `A` is dyno max rpm:
 
 | Step | Time ($t$ in seconds) | Target RPM | r19e ECU Output (V) | Dyno Controller Input (V) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -26,7 +26,7 @@ and then it simply would be transformed into a simple lookup table:
 | 3 | 3.75 | 924 | 3.05 V | 9.15 V |
 | 4 | 5.00 | 993 | 3.28 V | 9.84 V |
 
-*Figure 1: Example profile parameters configured for a real-time 5-second window using A = 1000, b = 2.0, and c = 2.5.*
+*Figure 1: Example profile parameters configured for a real-time 5-second window using `A = 1000`, `b = 2.0`, and `c = 2.5`.*
 
 However for the real system, raceday data is used to model the dynmaic torque loading on the powertrain. 
 
