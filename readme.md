@@ -29,6 +29,9 @@ And then it would simply be transformed into a simple lookup table, assuming A i
 
 However for the real system, raceday data is used to model the dynmaic torque loading on the powertrain. 
 
+> [!important]
+> The dyno has a much higher maximum RPM than 1000 and most likely isn't linear. This was a simple example. Check calibration curves / scaling factors.
+
 ## High-level Topology
 
 The dyno controller and r19e ECU are approximately `2-4 meters` apart and operate at different voltage levels (`0-3.3V` vs `0-10V`). So an ECU conditioning/isolation board is used, and a dyno receiver/amplification board is used.
