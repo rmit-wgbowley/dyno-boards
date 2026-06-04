@@ -3,22 +3,69 @@
 ![MIT License](https://img.shields.io/badge/License-MIT-e01e37?style=flat-square&logoColor=black)
 ![Electrics](https://img.shields.io/badge/Domain-Electrics-e01e37?style=flat-square&logoColor=black)
 
-The RMIT dyno setup consists at a high level of two systems, the dyno controller and the r19e ECU. This allows for the same HV system from the car to be used, avoiding validating another system. The r19e ECU is meant to primarily control the motor and HV system; however, for this test setup it also needs to transmit a voltage that controls the dyno RPM. This allows for a lookup table to be used to ramp up the dyno RPM in an arbitrary function.
+The RMIT dyno setup consists of two systems, the dyno controller and the r19e ECU. This allows for the same HV system from the car to be used, avoiding validating another system. The r19e ECU is meant to primarily control the motor and HV system; however, for this test setup it also needs to transmit a voltage that controls the dyno RPM. This allows for a lookup table to be used to ramp up the dyno RPM in an arbitrary function.
 
-However, the dyno controller and r19e ECU are approximately `3-4 meters` apart and operate at different voltage levels (`0-3.3V` vs `0-10V`). So an ECU conditioning board is used, and a dyno receiver/isolator is used.
+> [!NOTE]
+> Analysis, schematics & boards can be found [here](ecu-side) & [here](dyno-side).
 
-## Circuit Topology
+## Why communicate? 
 
-<!-- 
-The r19e ECU sends a `0-3.3V` PWM signal to the conditioning board where it is first filtered through an RC filter to remove any line transients. Then a Schmitt trigger (74HC14) boosts the signal to `5V` while also cleaning the leading edge. The signal is then passed to the AM26LS31AC which transmits it as (+signal, -signal).
+The current dyno system uses speed control on the dyno-side and torque control on the race-cars side. This allows for a lookup table to be used to ramp up the dyno RPM to model rpm vs torque.
+For example the rpm over time could be modelled as this arbitrary function,
 
-The differential signal then reaches the dyno receiver/isolator, where the differential signal is first passed through two 6n137 (one for each signal). After which, the signal is processed by the AM26LS32AC which returns a single signal that is boosted from `5V to 10V` using a UA741 and then sent to the dyno controller.
+$$RPM(t) = \frac{A}{1 + e^{-b(t-c)}}$$
 
-> [!note]
-> To produce 5V on the dyno board, the l78050V linear regulator is used.
-!-->
 
-Analysis, schematics & boards can be found [here](ecu-side) & [here](dyno-side).
+and then it simply would be transformed into a simple lookup table:
+
+| Step | Time ($t$ in seconds) | Target RPM | r19e ECU Output (V) | Dyno Controller Input (V) |
+| :--- | :---: | :---: | :---: | :---: |
+| 0 | 0.00 | 7 | 0.02 V | 0.06 V |
+| 1 | 1.25 | 76 | 0.25 V | 0.75 V |
+| 2 | 2.50 | 500 | 1.65 V | 4.95 V |
+| 3 | 3.75 | 924 | 3.05 V | 9.15 V |
+| 4 | 5.00 | 993 | 3.28 V | 9.84 V |
+
+*Figure 1: Example profile parameters configured for a real-time 5-second window using A = 1000, b = 2.0, and c = 2.5.*
+
+However for the real system, raceday data is used to model the dynmaic torque loading on the powertrain. 
+
+## High-level Topology
+
+The dyno controller and r19e ECU are approximately `2-4 meters` apart and operate at different voltage levels (`0-3.3V` vs `0-10V`). So an ECU conditioning board is used, and a dyno receiver/isolator is used.
+
+```
+ECU PWM Source (Digital 3.3V - PB13, tim1_CHN1, STM32F405RGT6)
+                    ↓
+
+ECU Side (3.3v domain)
+--------------------------------------------
+Schmitt trigger (Cleans up the signal edge)
+    ↓
+Digital Isolator (Isolates the PWM signal)
+    ↓
+RS-422 Driver (A/B differential pair)
+--------------------------------------------
+                    ↓
+
+--------------------------------------------
+twisted pairs: (+signal, -signal)
+optional: shielded twisted for better stability
+--------------------------------------------
+                    ↓
+
+DYNO Side (10V domain)
+--------------------------------------------
+RS-422 Reciver (Differential input, reject noise)
+    ↓
+RC low-pass  (PWM to DC voltage conversion)
+    ↓
+Op-amp 3x Gain (Scales to 0-10V)
+---------------------------------------------
+                    ↓
+
+DYNO Controller (Analog 10V Input)
+```
 
 ## Documentation
 
