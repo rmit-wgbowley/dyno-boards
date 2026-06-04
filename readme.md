@@ -32,13 +32,13 @@ However for the real system, raceday data is used to model the dynmaic torque lo
 
 ## High-level Topology
 
-The dyno controller and r19e ECU are approximately `2-4 meters` apart and operate at different voltage levels (`0-3.3V` vs `0-10V`). So an ECU conditioning board is used, and a dyno receiver/isolator is used.
+The dyno controller and r19e ECU are approximately `2-4 meters` apart and operate at different voltage levels (`0-3.3V` vs `0-10V`). So an ECU conditioning/isolation board is used, and a dyno receiver/amplification board is used.
 
 ```
 ECU PWM Source (Digital 3.3V - PB13, tim1_CHN1, STM32F405RGT6)
                     ↓
 
-ECU Side (3.3v domain)
+ECU Side (3.3v domain) (conditioning / isolation)
 --------------------------------------------
 Schmitt trigger (Cleans up the signal edge)
     ↓
@@ -54,7 +54,7 @@ optional: shielded twisted for better stability
 --------------------------------------------
                     ↓
 
-DYNO Side (10V domain)
+DYNO Side (10V domain) (reciver / amplification) 
 --------------------------------------------
 RS-422 Reciver (Differential input, reject noise)
     ↓
