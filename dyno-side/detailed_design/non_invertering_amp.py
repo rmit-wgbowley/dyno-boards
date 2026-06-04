@@ -12,7 +12,7 @@ Description:
 
 
 from picounits import q, unit_validator
-from picounits import KILO, VOLTAGE, RESISTANCE
+from picounits import KILO, RESISTANCE
 
 gain = 2
 res_2 = 1 * KILO * RESISTANCE

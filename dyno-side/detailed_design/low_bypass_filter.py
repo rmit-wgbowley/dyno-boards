@@ -16,27 +16,27 @@ Description:
 
 from math import pi
 
-from picounits import q, unit_validator
-from picounits import KILO, FREQUENCY, TIME, RESISTANCE, CAPACITANCE
+from picounits import KILO, NANO, VOLTAGE, FREQUENCY, RESISTANCE, CAPACITANCE
 
+v_supply = 5 * VOLTAGE
+amplification_gain = 2
 
-cutoff = 100 * FREQUENCY
-r1 = 1 * KILO * RESISTANCE
+pwm_frequency = 10000 * FREQUENCY
+cutoff = 50 * FREQUENCY
+r1 = 2 * KILO * RESISTANCE
+c1 = 100 * NANO * CAPACITANCE
 
-@unit_validator(CAPACITANCE)
-def calculate_cap_size(f: q) -> q:
-    """ Calculates the size of the capacitor to get a nice cutoff """
-    return 1 /  (2 * pi * f * r1)
+# If c_total > c1, you need to add an extra capacitor (c_extra)
+c_total = 1 / (2 * pi * cutoff * r1)
+c_extra = c_total - c1
 
-@unit_validator(TIME)
-def time_constant(c: q) -> q:
-    """ Calculates the time constant of the system """
-    return c * r1
+# total capacitance for ripple and timing calculations
+time_constant_total = c_total * r1
+settling_time = 5 * time_constant_total
+ripple = (v_supply * 0.5) / (pwm_frequency * r1 * c_total)
 
-
-cap = calculate_cap_size(cutoff)
-time = time_constant(cap)
-
-print(f"Resistor: {r1:.3f} & Cutoff frequency: {cutoff:.3f}")
-print(f"Capacitance: {cap:.3f} | Time constant: {cap * r1:.3f}")
-print(f"Rise time @ 5 steps: {cap * r1 * 5:.3f} (99.3%)")
+print(f"c_extra: {c_extra:.3f}")
+print(f"time constant: {time_constant_total:.3f}")
+print(f"settling_time: {settling_time:.3f}")
+print(f"ripple_in: {ripple:.3f}, ripple_out: {ripple*amplification_gain:.3f}")
+print(f"Ripple ratio of range: {ripple/v_supply*100:.3f} %")

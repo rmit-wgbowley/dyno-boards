@@ -39,14 +39,14 @@ The dyno controller and r19e ECU are approximately `2-4 meters` apart and operat
 
 
 ```
-ECU PWM Source (Digital 3.3V - PB13, tim1_CHN1, STM32F405RGT6)
+ECU PWM Source (Digital 3.3V @ 10kHz - PB13, tim1_CHN1, STM32F405RGT6)
                     ↓
 
 ECU Side (3.3V domain) (conditioning / isolation)
 --------------------------------------------
 Schmitt trigger (Cleans up the signal edge)
     ↓
-Digital Isolator (Isolates the PWM signal) ← (Isolated 3.3v from dc/dc)
+Digital Isolator (Isolates the PWM signal) ← (Isolated 3.3v domain)
     ↓
 RS-422 Driver (A/B differential pair)
 --------------------------------------------
@@ -58,13 +58,15 @@ optional: shielded twisted for better stability
 --------------------------------------------
                     ↓
 
-DYNO Side (10V domain) (receiver / amplification) 
+DYNO Side (5/12V domain) (receiver / amplification) 
 --------------------------------------------
 RS-422 receiver (Differential input, rejects noise) ← (5V LDO)
     ↓
-RC low-pass filter (100hZ)  (PWM to DC voltage conversion)
+RC low-pass filter (50Hz, 75mV ripple) (PWM to DC voltage conversion)
     ↓
 Op-amp 2x Gain (non inverting) (Scales to 0-10V)
+    ↓
+Output clamp protection (Zener-based, protects 0–10V ADC input range)
 ---------------------------------------------
                     ↓
 
