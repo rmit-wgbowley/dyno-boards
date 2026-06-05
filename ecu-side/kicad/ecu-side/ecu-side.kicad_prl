@@ -63,7 +63,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "dyno-side.kicad_prl",
+    "filename": "ecu-side.kicad_prl",
     "version": 5
   },
   "net_inspector_panel": {

@@ -23,11 +23,11 @@ And then it would simply be transformed into a simple lookup table, assuming A i
 
 | Step | Time ($t$ in seconds) | Target RPM | r19e ECU Output (V) | Dyno Controller Input (V) |
 | :--- | :---: | :---: | :---: | :---: |
-| 0 | 0.00 | 7 | 0.02 V | 0.06 V |
-| 1 | 1.25 | 76 | 0.25 V | 0.75 V |
-| 2 | 2.50 | 500 | 1.65 V | 4.95 V |
-| 3 | 3.75 | 924 | 3.05 V | 9.15 V |
-| 4 | 5.00 | 993 | 3.28 V | 9.84 V |
+| 0 | 0.00 | 7 | 0.04 V | 0.06 V |
+| 1 | 1.25 | 76 | 0.38 V | 0.75 V |
+| 2 | 2.50 | 500 | 2.50 V | 4.95 V |
+| 3 | 3.75 | 924 | 4.62 V | 9.15 V |
+| 4 | 5.00 | 993 | 4.97 V | 9.84 V |
 
 *Figure 1: Example profile parameters configured for a real-time 5-second window using `A = 1000`, `b = 2.0`, and `c = 2.5`. There is a 3× gain between the ECU and the dyno input.*
 

@@ -472,7 +472,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "dyno-side.kicad_pro",
+    "filename": "ecu-side.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -620,24 +620,24 @@
     "meta": {
       "version": 1
     },
-    "page_layout_descr_file": "Dyno Side Receiver / Amplification",
+    "page_layout_descr_file": "ECU-side conditioning / isolation",
     "plot_directory": "",
     "reuse_designators": true,
     "subpart_first_id": 65,
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "dyno-side.kicad_sch",
+        "filename": "ecu-side.kicad_sch",
         "name": "Root",
-        "uuid": "2a2a34ba-ef3a-4c53-b11c-432208e9796c"
+        "uuid": "44fd82d1-1a19-4a10-963a-e6547fd44ac6"
       }
     ],
-    "used_designators": "",
+    "used_designators": "J1,J3",
     "variants": []
   },
   "sheets": [
     [
-      "2a2a34ba-ef3a-4c53-b11c-432208e9796c",
+      "44fd82d1-1a19-4a10-963a-e6547fd44ac6",
       "Root"
     ]
   ],
