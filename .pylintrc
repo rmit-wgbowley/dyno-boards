@@ -1,6 +1,5 @@
 [MESSAGES CONTROL]
-disable = W0621,        # Redefining name from outer scope
-disable = W0105,        # String statement has no effect
+disable = W0621, W0105
 
 [FORMAT]
-max-line-length=120     # Maximum number of characters on a single line.
+max-line-length=120
