@@ -3144,9 +3144,9 @@
 		)
 		(uuid "45d6fa2c-1733-4232-897a-1af192afa7ff")
 	)
-	(text "DC/DC isolated 3.3V\n"
+	(text "DC/DC isolated 5V\n\n"
 		(exclude_from_sim no)
-		(at 28.702 19.812 0)
+		(at 27.686 20.828 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3165,6 +3165,12 @@
 			)
 		)
 		(uuid "ea9804fc-e21f-46ee-b2e6-0bc27d0b1e20")
+	)
+	(junction
+		(at 81.28 63.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "04195599-4468-4a88-9bf3-55b90658af56")
 	)
 	(junction
 		(at 34.29 41.91)
@@ -3225,12 +3231,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "958d9c9f-fc88-4b66-9153-fb03c90cf81a")
-	)
-	(junction
-		(at 78.74 63.5)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "97617c3e-1017-4984-84bb-dd676a4d4b5c")
 	)
 	(junction
 		(at 116.84 55.88)
@@ -3514,7 +3514,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 63.5) (xy 83.82 63.5)
+			(xy 78.74 63.5) (xy 81.28 63.5)
 		)
 		(stroke
 			(width 0)
@@ -3626,7 +3626,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 66.04) (xy 83.82 66.04)
+			(xy 81.28 66.04) (xy 83.82 66.04)
 		)
 		(stroke
 			(width 0)
@@ -3779,17 +3779,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 63.5) (xy 78.74 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9e86a446-b934-4df6-921a-62f9a009febc")
-	)
-	(wire
-		(pts
-			(xy 80.01 73.66) (xy 80.01 66.04)
+			(xy 81.28 73.66) (xy 81.28 66.04)
 		)
 		(stroke
 			(width 0)
@@ -3962,7 +3952,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 73.66) (xy 78.74 73.66)
+			(xy 81.28 73.66) (xy 78.74 73.66)
 		)
 		(stroke
 			(width 0)
@@ -4023,6 +4013,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 63.5) (xy 83.82 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "edece26c-c96c-4d1c-bc01-47c3c5d07ad7")
+	)
+	(wire
+		(pts
 			(xy 147.32 35.56) (xy 161.29 35.56)
 		)
 		(stroke
@@ -4060,6 +4060,16 @@
 			(type default)
 		)
 		(uuid "f3bd453a-85aa-4026-b275-48bc17d1e351")
+	)
+	(wire
+		(pts
+			(xy 81.28 62.23) (xy 81.28 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f697c31e-7b56-4a9d-8822-4ae1d47f3165")
 	)
 	(image
 		(at 184.7598 173.7391)
@@ -5065,7 +5075,7 @@
 				)
 			)
 		)
-		(property "Value" "+3.3V"
+		(property "Value" "+5V"
 			(at 27.94 60.452 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5530,83 +5540,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 78.74 62.23 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6d152f3b-adbf-4714-9ec7-4d37c77f574c")
-		(property "Reference" "#PWR09"
-			(at 78.74 66.04 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 78.74 57.912 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 78.74 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 78.74 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 78.74 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "85aba466-f15b-462b-bbf4-4b397f01e789")
-		)
-		(instances
-			(project "ecu-side"
-				(path "/44fd82d1-1a19-4a10-963a-e6547fd44ac6"
-					(reference "#PWR09")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "RFM-0505S:RFM-0505S")
 		(at 67.31 36.83 0)
 		(unit 1)
@@ -5909,6 +5842,83 @@
 			(project "ecu-side"
 				(path "/44fd82d1-1a19-4a10-963a-e6547fd44ac6"
 					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 81.28 62.23 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b55fdf68-334d-46be-824f-652c1f46e325")
+		(property "Reference" "#PWR08"
+			(at 81.28 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 81.28 57.912 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 81.28 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 81.28 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 81.28 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5d144dfe-b91f-4cf4-88d8-9659e508ec0e")
+		)
+		(instances
+			(project "ecu-side"
+				(path "/44fd82d1-1a19-4a10-963a-e6547fd44ac6"
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)

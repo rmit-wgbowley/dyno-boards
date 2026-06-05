@@ -4,8 +4,8 @@ RECTANGLE Normal -64 -56 64 56
 WINDOW 0 0 -56 Bottom 2
 WINDOW 3 0 56 Top 2
 SYMATTR Prefix X
-SYMATTR Value TLV9002
-SYMATTR ModelFile C:\Users\WBowl\Documents\Work\client_projects\dyno-boards\dyno-side\simulation_validation\tlv9002\tlv9002.lib
+SYMATTR Value LMX58_LM2904
+SYMATTR ModelFile C:\Users\WBowl\Documents\Work\client_projects\dyno-boards\dyno-side\simulation_validation\LMx58\lmx58_lm2904.lib
 PIN -64 -16 LEFT 8
 PINATTR PinName IN+
 PINATTR SpiceOrder 1

@@ -29,7 +29,7 @@ And then it would simply be transformed into a simple lookup table, assuming A i
 | 3 | 3.75 | 924 | 4.62 V | 9.15 V |
 | 4 | 5.00 | 993 | 4.97 V | 9.84 V |
 
-*Figure 1: Example profile parameters configured for a real-time 5-second window using `A = 1000`, `b = 2.0`, and `c = 2.5`. There is a 3× gain between the ECU and the dyno input.*
+*Figure 1: Example profile parameters configured for a real-time 5-second window using `A = 1000`, `b = 2.0`, and `c = 2.5`. There is a 2× gain between the ECU and the dyno input.*
 
 However for the real system, race day data is used to model the dynamic torque loading on the powertrain. 
 
@@ -42,11 +42,11 @@ The dyno controller and r19e ECU are approximately `2-4 meters` apart and operat
 ECU PWM Source (Digital 3.3V @ 10kHz - PB13, tim1_CHN1, STM32F405RGT6)
                     ↓
 
-ECU Side (3.3V domain) (conditioning / isolation)
+ECU Side (3.3V logic / 5V domain) (conditioning / isolation)
 --------------------------------------------
 Schmitt trigger (Cleans up the signal edge)
     ↓
-Digital Isolator (Isolates the PWM signal) ← (Isolated 3.3v domain)
+Digital Isolator (Isolates the PWM signal) ← (Isolated 5V domain)
     ↓
 RS-422 Driver (A/B differential pair)
 --------------------------------------------
