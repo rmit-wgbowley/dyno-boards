@@ -4,3 +4,5 @@ datasheets/informal_introduction_to_motor_testing.pdf
 *.log
 *.zip
 *.htm
+*.lck
+dyno-side/kicad/dyno-side/.history/

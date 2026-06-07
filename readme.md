@@ -1,13 +1,12 @@
 ## Overview
-
-![MIT License](https://img.shields.io/badge/License-MIT-e01e37?style=flat-square&logoColor=black)
+![Status](https://img.shields.io/badge/Status-WIP-e01e37?style=flat-square)
+![MIT License](https://img.shields.io/badge/License-MIT-FFFFFF?style=flat-square&logoColor=black)
 ![Electrics](https://img.shields.io/badge/Domain-Electrics-e01e37?style=flat-square&logoColor=black)
 
 The RMIT dyno setup consists of two systems, the dyno controller and the r19e ECU. This allows for the same HV system from the car to be used, avoiding validating another system. The r19e ECU is meant to primarily control the motor and HV system; however, for this test setup it also needs to transmit a voltage that controls the dyno RPM. This allows for a lookup table to be used to ramp up the dyno RPM in an arbitrary function.
 
 > [!NOTE]
 > Analysis, schematics & boards can be found [here](ecu-side) & [here](dyno-side).
-
 
 ## Why communicate? 
 
