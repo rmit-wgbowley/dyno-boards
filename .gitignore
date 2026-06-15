@@ -6,3 +6,5 @@ datasheets/informal_introduction_to_motor_testing.pdf
 *.htm
 *.lck
 dyno-side/kicad/dyno-side/.history/
+/ecu-side/alitum/__Previews
+/dyno-side/alitum/__Previews

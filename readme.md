@@ -72,6 +72,9 @@ Output clamp protection (Zener-based, protects 0–10V ADC input range)
 DYNO Controller (Analog 10V Input)
 ```
 
+> [!NOTE]
+> Boost-buck converter module is used to supply the 12V on the dyno side from the dyno's 10V supply due to op-amp rail-limit (~1.5-2V rail Swing limit)
+
 ## Documentation
 
 All internal documentation can be found within this repo's [issues](https://github.com/rmit-wgbowley/dyno-boards/issues?q=is%3Aissue%20state%3Aclosed).
