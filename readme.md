@@ -63,12 +63,9 @@ RS-422 receiver (Differential input, rejects noise) ← (5V LDO)
     ↓
 RC low-pass filter (50Hz, 75mV ripple) (PWM to DC voltage conversion)
     ↓
-Op-amp 2x Gain (non inverting) (Scales to 0-10V)
-    ↓
-Output clamp protection (Zener-based, protects 0–10V ADC input range)
+Op-amp 2x Gain (non inverting) (Scales to 0–10V ADC input range)
 ---------------------------------------------
                     ↓
-
 DYNO Controller (Analog 10V Input)
 ```
 
