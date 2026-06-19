@@ -11,12 +11,11 @@ Description:
 """
 
 
-from picounits import q, unit_validator
+from picounits import Q as q, unit_validator
 from picounits import KILO, RESISTANCE
 
 gain = 2
 res_2 = 1 * KILO * RESISTANCE
-
 
 @unit_validator(RESISTANCE)
 def calculates_feedback(gain: q) -> q:

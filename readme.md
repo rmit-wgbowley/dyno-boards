@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="domain-side\media\load_and_dyno_motor.png" alt="load_and_dyno_motors" style="max-width:600px;">
+</p>
+
+
 ## Overview
 ![Status](https://img.shields.io/badge/Status-WIP-e01e37?style=flat-square)
 ![MIT License](https://img.shields.io/badge/License-MIT-FFFFFF?style=flat-square&logoColor=black)
@@ -15,10 +20,11 @@ For example the rpm over time could be modelled as this arbitrary function,
 
 $$RPM(t) = \frac{A}{1 + e^{-b(t-c)}}$$
 
-And then it would simply be transformed into a simple lookup table, assuming A is the dyno's max RPM:
+And then it would simply be transformed into a simple lookup table, assuming A is the dyno max rpm:
 
 > [!important]
-> The dyno has a much higher maximum RPM than 1000 and most likely isn't linear. This was a simple example. Check calibration curves / scaling factors.
+> The dyno has a 200 kΩ input impedance (AI1) and an analog range of 0–10 V with a linear scale of 5 mV per 1 RPM.
+
 
 | Step | Time ($t$ in seconds) | Target RPM | r19e ECU Output (V) | Dyno Controller Input (V) |
 | :--- | :---: | :---: | :---: | :---: |

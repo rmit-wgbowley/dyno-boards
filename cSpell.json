@@ -9,6 +9,8 @@
     "schmitt",
     "picounits",
     "zener",
-    "datasheets"
+    "datasheets",
+    "pmsm",
+    "milli"
   ]
 }

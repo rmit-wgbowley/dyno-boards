@@ -15,7 +15,6 @@ Description:
 """
 
 from math import pi
-
 from picounits import KILO, NANO, VOLTAGE, FREQUENCY, RESISTANCE, CAPACITANCE
 
 v_supply = 5 * VOLTAGE
@@ -35,7 +34,7 @@ time_constant_total = c_total * r1
 settling_time = 5 * time_constant_total
 ripple = (v_supply * 0.5) / (pwm_frequency * r1 * c_total)
 
-print(f"c_extra: {c_extra:.3f}")
+print(f"c_total: {c_total:.3f}, c_extra: {c_extra:.3f}")
 print(f"time constant: {time_constant_total:.3f}")
 print(f"settling_time: {settling_time:.3f}")
 print(f"ripple_in: {ripple:.3f}, ripple_out: {ripple*amplification_gain:.3f}")
