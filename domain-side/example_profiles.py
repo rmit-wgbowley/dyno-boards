@@ -7,25 +7,45 @@ Description:
     and the 3.3v to 10v amplification.
 
     NOTE:
-    This script does use my custom framework picounits
+    DIRECTION -> True = RPM ramp up, False = RPM ramp down
 """
 
-from math import e
-from picounits import VOLTAGE, MILLI
+from math import cos, pi
 
+# Controls
+DIRECTION = True
+TABLE = True
 
 # Parameters
-c=0
-b=1/100
-c=0
+time_step = 0.250
+total_time = 1.5
 
-# script control
-ecu_side = 3.3 * VOLTAGE
-dyno_scale = 5 * MILLI * VOLTAGE
+target_rpm = 1000
+gearing = 12.81
+conversion = 0.005
+analog_max = 10
 
-dyno_pre_amplification = dyno_scale / 2
-ecu_pre_isolation = 3.3 * dyno_pre_amplification / 5
+def rpm_ramp(t, a, b, t_total):
+    """ Dyno side rpm function """
+    if DIRECTION:
+        return a/(2*b) * (1-cos(pi*t/t_total))
 
-def ramp_profile(t, a, b, c):
-    """ Arbitrary example function"""
-    return a / (1 + e ** (-b*(t-c)))
+    return a - a/(2*b) * (1-cos(pi*t/t_total))
+
+
+def duty_cycle(rpm, c):
+    """ Rpm to duty cycle with duty cycle clamp """
+    dc = 10 * c * rpm
+    return min(max(dc, 0), 100)
+
+t = 0
+lookup_table = []
+while t < total_time + 1*time_step:
+    rpm = rpm_ramp(t, target_rpm, gearing, total_time)
+    dc = duty_cycle(rpm, conversion)
+
+    ai1 = (dc/100) * analog_max
+    print(f"Time: {t:.3f}s, ECU Duty Cycle: {dc:.2f}%, Dyno target rpm: {rpm:.0f}, AI1: {ai1:.2f}v")
+
+    lookup_table.append({'time (s)': t, 'duty_cycle (0-100)': dc})
+    t += time_step
