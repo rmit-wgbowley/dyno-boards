@@ -66,6 +66,7 @@ RS-422 Driver (A/B differential pair)
 --------------------------------------------
                     ↓
 
+CAT 5/6 Cable
 --------------------------------------------
 twisted pairs: (+signal, -signal)
 optional: shielded twisted for better stability

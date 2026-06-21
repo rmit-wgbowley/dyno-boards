@@ -1,4 +1,5 @@
 ### ECU-sides Topology & Components
+Schematic available at Projects/RnD/Dynamometer Interface on Altium 365
 
 ```
 ECU PWM Source (Digital 5V - PB13, tim1_CHN1, STM32F405RGT6)
