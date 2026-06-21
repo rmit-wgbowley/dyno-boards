@@ -73,9 +73,9 @@ optional: shielded twisted for better stability
 --------------------------------------------
                     ↓
 
-DYNO Side (5/12 V domain) (receiver / amplification) 
+DYNO Side (5 / 10 V domain) (receiver / amplification) 
 --------------------------------------------
-RS-422 receiver (Differential input, rejects noise) ← (5 V LDO)
+RS-422 receiver (Differential input, rejects noise) ← (5 V LDO)(14 ms start up)
     ↓
 RC low-pass filter (50 Hz, 75 mV ripple) (PWM to DC voltage conversion)
     ↓
@@ -84,9 +84,6 @@ Op-amp 2x Gain (non inverting) (Scales to 0–10V ADC input range)
                     ↓
 DYNO Controller (Analog 10V Input)
 ```
-
-> [!NOTE]
-> Buck-boost converter module is used to supply the 12V on the dyno side from the dyno's 10V supply due to op-amp rail-limit (~1.5-2 V rail swing limit).
 
 ## Documentation
 

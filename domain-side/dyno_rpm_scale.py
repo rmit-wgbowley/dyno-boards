@@ -7,7 +7,7 @@ Description:
 
     The dyno (AI1 & AI2) inputs have impedances of 200kOhm 
     and sampling of 3.3ms.
-
+    
     NOTE:
     This script does use my custom framework picounits
 
@@ -20,6 +20,11 @@ Description:
     The input signal is 10kHz hence with the current RC filter
     before the 2x op-amp. ~1.6uF & 2kOhms with a pre-amplification
     ripple of ~78.5mV & time-constant of 3.183ms
+    
+    NOTE:
+    The AI1 Input is modelled as a RC filter with a time constant of 
+    3.3ms hence the total attenuation is first_order (rc filter) *
+    second_order (AI1 input). THIS IS AN ASSUMPTION. NOT VALIDATED.
 """
 
 from math import pi
