@@ -13,6 +13,7 @@
     "pmsm",
     "milli",
     "nullset",
-    "Altium"
+    "Altium",
+    "PCLK"
   ]
 }

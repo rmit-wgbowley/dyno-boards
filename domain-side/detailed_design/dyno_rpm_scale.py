@@ -25,14 +25,19 @@ Description:
     The AI1 Input is modelled as a RC filter with a time constant of 
     3.3ms hence the total attenuation is first_order (rc filter) *
     second_order (AI1 input). THIS IS AN ASSUMPTION. NOT VALIDATED.
+    
+    Validate:
+    RC filter attenuation (first order)
+    Assumed:
+    AI1 attenuation (second order)
 """
 
 from math import pi
-from picounits import VOLTAGE, FREQUENCY, TIME, MILLI, KILO
+from picounits import VOLTAGE, TIME, MILLI
 
 # Script control
 sampling = 3.3 * MILLI * TIME
-frequency = 10 * KILO * FREQUENCY
+frequency = 10000 * (1/TIME)
 step_size = 100
 ratio = 12.81
 
@@ -40,15 +45,14 @@ ratio = 12.81
 max_voltage = 10 * VOLTAGE
 rpm_step = 5 * MILLI * VOLTAGE
 
-
 # Output ripple voltage
 time_constant = 3.183 * MILLI * TIME
 ripple_voltage = 78.5 * MILLI * VOLTAGE
 posted_amplification = 2 * ripple_voltage
 
 # Output Attenuation
-first_order = 1 / (1 + (2 * pi * frequency * time_constant) ** 2) ** 0.5
-second_order = 1 / (1 + (2 * pi * frequency * sampling) ** 2) ** 0.5
+first_order = 1 / ((1 + (2 * pi * frequency * time_constant) ** 2) ** 0.5)
+second_order = 1 / ((1 + (2 * pi * frequency * sampling) ** 2) ** 0.5)
 total_attenuation = first_order * second_order
 
 effective_ripple = posted_amplification * total_attenuation
@@ -60,6 +64,10 @@ rpm_load_ripple = ratio * rpm_dyno_ripple
 rpm_dyno_tolerance = rpm_dyno_ripple / 2
 rpm_load_tolerance = rpm_load_ripple / 2
 
+# Information Print out
+print("-------------------------------------------------")
+print(f"SET Driving frequency: {frequency:.3f} | SET RC ripple: {ripple_voltage:.3f} | tau: {time_constant:.3f}")
+print(f"Total Attenuation: {total_attenuation:.3f}")
 a13_input = 0 * VOLTAGE
 while a13_input < max_voltage:
     a13_input += step_size * rpm_step

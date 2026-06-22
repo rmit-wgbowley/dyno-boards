@@ -28,17 +28,17 @@ $$ DC(t) = 10C \times RPM(t), \quad DC(t) \in [0, 100]$$
 And then it would simply be transformed into a simple lookup table, assuming `C` is the the dyno controller input scaling factor `(V/RPM)` after the 2× amplification stage.
 
 > [!important]
-> The dyno has a `200 kΩ` input impedance (AI1) and an analog range of `0–10 V` with a linear factor of `5 mV/RPM`. The r26 powertrain has a gearing of `1:12.81`.
+> The dyno has a `200 kΩ` input impedance (AI1) and an analog range of `0–10 V` with a linear factor of `5 mV/RPM`. The r26 powertrain has a gearing of `1:12.81`. Driving frequency table (ARR), output ripple at the dyno, and duty-cycle resolution trade-offs can be found [here](domain-side/readme.md).
 
-| Step | Time (s) | ECU Duty Cycle (%) | Target Dyno RPM | Dyno Controller Input (V) |
+| Step | Time (s) | ECU Duty Cycle (%) | Dyno Controller Input (V) | Target Dyno (RPM)
 | :--- | :---: | :---: | :---: | :---: |
-| 0 | 0.00 | 0.00 | 0  | 0.0 |
-| 1 | 0.25 | 0.26 | 5  | 0.03 |
-| 2 | 0.50 | 0.98 | 20 | 0.10 |
-| 3 | 0.75 | 1.95 | 39 | 0.20 |
-| 4 | 1.00 | 2.93 | 59 | 0.29 |
-| 5 | 1.25 | 3.64 | 73 | 0.36 |
-| 6 | 1.50 | 3.90 | 78 | 0.39 |
+| 0 | 0.00 | 0.00 | 0.0  | 0  | 
+| 1 | 0.25 | 0.26 | 0.03 | 5  |
+| 2 | 0.50 | 0.98 | 0.10 | 20 |
+| 3 | 0.75 | 1.95 | 0.20 | 39 |
+| 4 | 1.00 | 2.93 | 0.29 | 59 |
+| 5 | 1.25 | 3.64 | 0.36 | 73 |
+| 6 | 1.50 | 3.90 | 0.39 | 78 |
 
 *Figure 1: Example profile parameters configured for a real-time `1.5-second` window with time steps of `250 ms` using `A = 1000`, `B = 12.81`, and `c = 0.005`.*
 
@@ -53,9 +53,11 @@ The dyno controller and r19e ECU are approximately `2-4 meters` apart and operat
 
 
 ```
+Interface (2.54mm Pitch Male Header)
 ECU PWM Source (Digital 3.3 V @ 10 kHz - PB13, tim1_CHN1, STM32F405RGT6)
                     ↓
 
+Interface (jst xh 4 pin 2.5mm)
 ECU Side (3.3 V logic / 5 V domain) (conditioning / isolation)
 --------------------------------------------
 Schmitt trigger (Cleans up the signal edge)
@@ -63,25 +65,31 @@ Schmitt trigger (Cleans up the signal edge)
 Digital Isolator (Isolates the PWM signal) ← (Isolated 5 V domain)
     ↓
 RS-422 Driver (A/B differential pair)
---------------------------------------------
+-------------------------------------------- 
+Interface Socket (RJ45)
                     ↓
 
 CAT 5/6 Cable
 --------------------------------------------
 twisted pairs: (+signal, -signal)
-optional: shielded twisted for better stability
 --------------------------------------------
                     ↓
 
+Interface Socket (RJ45)
 DYNO Side (5 / 10 V domain) (receiver / amplification) 
 --------------------------------------------
-RS-422 receiver (Differential input, rejects noise) ← (5 V LDO)(14 ms start up)
+RS-422 receiver (Differential input, rejects noise) ← (5 V LDO)
     ↓
 RC low-pass filter (50 Hz, 75 mV ripple) (PWM to DC voltage conversion)
+NOTE:
+Ripple magnitude depends on PWM frequency,
+filter capacitance, and filter resistance.
     ↓
 Op-amp 2x Gain (non inverting) (Scales to 0–10V ADC input range)
----------------------------------------------
+--------------------------------------------- 
+Interface (jst xh 4 pin 2.5mm)
                     ↓
+Interface (4 pin barrel jack) (Unknown Specifics)
 DYNO Controller (Analog 10V Input)
 ```
 
