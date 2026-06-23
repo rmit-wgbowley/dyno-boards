@@ -1,10 +1,9 @@
 <p align="center">
-  <img src="domain-side/media/load_and_dyno_motor.png" alt="load_and_dyno_motors" style="max-width:600px;">
+  <img src="media/load_and_dyno_motor.png" alt="load_and_dyno_motors" style="max-width:600px;">
 </p>
 
 
 ## Overview
-![Status](https://img.shields.io/badge/Status-WIP-e01e37?style=flat-square)
 ![MIT License](https://img.shields.io/badge/License-MIT-FFFFFF?style=flat-square&logoColor=black)
 ![Electrics](https://img.shields.io/badge/Domain-Electrics-e01e37?style=flat-square&logoColor=black)
 ![Dyno System](https://img.shields.io/badge/System-Dyno-FFFFFF?style=flat-square&logo=speedtest)
@@ -30,15 +29,15 @@ And then it would simply be transformed into a simple lookup table, assuming `C`
 > [!important]
 > The dyno has a `200 kΩ` input impedance (AI1) and an analog range of `0–10 V` with a linear factor of `5 mV/RPM`. The r26 powertrain has a gearing of `1:12.81`. Driving frequency table (ARR), output ripple at the dyno, and duty-cycle resolution trade-offs can be found [here](domain-side/readme.md).
 
-| Step | Time (s) | ECU Duty Cycle (%) | Dyno Controller Input (V) | Target Dyno (RPM)
-| :--- | :---: | :---: | :---: | :---: |
-| 0 | 0.00 | 0.00 | 0.0  | 0  | 
-| 1 | 0.25 | 0.26 | 0.03 | 5  |
-| 2 | 0.50 | 0.98 | 0.10 | 20 |
-| 3 | 0.75 | 1.95 | 0.20 | 39 |
-| 4 | 1.00 | 2.93 | 0.29 | 59 |
-| 5 | 1.25 | 3.64 | 0.36 | 73 |
-| 6 | 1.50 | 3.90 | 0.39 | 78 |
+| Step | Time (s) | ECU Duty Cycle (%) | Dyno Controller Input (V) | Target Dyno (RPM) | Target Load (RPM) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| 0 | 0.00 | 0.00 | 0.0  | 0  | 0 |
+| 1 | 0.25 | 0.26 | 0.03 | 5  | 64 |
+| 2 | 0.50 | 0.98 | 0.10 | 20 | 256 |   
+| 3 | 0.75 | 1.95 | 0.20 | 39 | 500 |
+| 4 | 1.00 | 2.93 | 0.29 | 59 | 755 |
+| 5 | 1.25 | 3.64 | 0.36 | 73 | 935 |
+| 6 | 1.50 | 3.90 | 0.39 | 78 | 999 |
 
 *Figure 1: Example profile parameters configured for a real-time `1.5-second` window with time steps of `250 ms` using `A = 1000`, `B = 12.81`, and `c = 0.005`.*
 

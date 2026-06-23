@@ -1,5 +1,4 @@
 ### Dyno Side Topology & Components
-Schematic available at Projects/RnD/Dynamometer Interface on Altium 365
 
 ```
 Interface (RJ45) 
