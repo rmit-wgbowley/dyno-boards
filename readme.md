@@ -24,7 +24,7 @@ Where `A` is the target RPM at the load side, `B` is the gearing ratio between t
 $$ DC(t) = (\frac{C \times RPM(t)}{2})(\frac{3.3}{5})(\frac{100}{3.3})$$
 $$ DC(t) = 10C \times RPM(t), \quad DC(t) \in [0, 100]$$
 
-And then it would simply be transformed into a simple lookup table, assuming `C` is the the dyno controller input scaling factor `(V/RPM)` after the 2× amplification stage.
+And then it would simply be transformed into a simple lookup table, assuming `C` is the dyno controller input scaling factor `(V/RPM)` after the 2× amplification stage.
 
 > [!important]
 > The dyno has a `200 kΩ` input impedance (AI1) and an analog range of `0–10 V` with a linear factor of `5 mV/RPM`. The r26 powertrain has a gearing of `1:12.81`. Driving frequency table (ARR), output ripple at the dyno, and duty-cycle resolution trade-offs can be found [here](domain-side/readme.md).
@@ -53,7 +53,7 @@ The dyno controller and r19e ECU are approximately `2-4 meters` apart and operat
 
 ```
 Interface (2.54mm Pitch Male Header)
-ECU PWM Source (Digital 3.3 V @ 10 kHz - PB13, tim1_CHN1, STM32F405RGT6)
+ECU PWM Source (Digital 3.3 V - PB13, tim1_CHN1, STM32F405RGT6)
                     ↓
 
 Interface (jst xh 4 pin 2.5mm)
@@ -79,12 +79,12 @@ DYNO Side (5 / 10 V domain) (receiver / amplification)
 --------------------------------------------
 RS-422 receiver (Differential input, rejects noise) ← (5 V LDO)
     ↓
-RC low-pass filter (50 Hz, 75 mV ripple) (PWM to DC voltage conversion)
+RC low-pass filter (50 Hz) (PWM to DC voltage conversion)
 NOTE:
 Ripple magnitude depends on PWM frequency,
 filter capacitance, and filter resistance.
     ↓
-Op-amp 2x Gain (non inverting) (Scales to 0–10V ADC input range)
+Op-amp 2× Gain (non-inverting) (Scales to 0–10V ADC input range)
 --------------------------------------------- 
 Interface (jst xh 4 pin 2.5mm)
                     ↓
@@ -92,6 +92,12 @@ Interface (4 pin barrel jack) (Unknown Specifics)
 DYNO Controller (Analog 10V Input)
 ```
 
+> [!info]
+> Universal Case design: [Available here (Fusion source files)](domain-side/pcb_case/)
+> - IGES format included for users without Fusion
+> - 4× M3 inserts for mounting PCB and top housing
+> - Velcro recommended to secure the housing to the test bench
+
 ## Documentation
 
-All internal documentation can be found within this repo's [issues](https://github.com/rmit-wgbowley/dyno-boards/issues?q=is%3Aissue%20state%3Aclosed).
+All internal documentation can be found within this repo's [issues](https://github.com/rmit-wgbowley/dyno-boards/issues?q=state%3Aclosed).
