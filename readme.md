@@ -92,7 +92,7 @@ Interface (4 pin barrel jack) (Unknown Specifics)
 DYNO Controller (Analog 10V Input)
 ```
 
-> [!info]
+> [!NOTE]
 > Universal Case design: [Available here (Fusion source files)](domain-side/pcb_case/)
 > - IGES format included for users without Fusion
 > - 4× M3 inserts for mounting PCB and top housing
