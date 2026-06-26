@@ -84,7 +84,7 @@ NOTE:
 Ripple magnitude depends on PWM frequency,
 filter capacitance, and filter resistance.
     ↓
-Op-amp 2× Gain (non-inverting) (Scales to 0–10V ADC input range)
+Op-amp 2× Gain (non-inverting) (Scales to 0–10V ADC input range) ← 10 V Line
 --------------------------------------------- 
 Interface (JST XH 4-pin 2.5mm)
                     ↓
