@@ -2,17 +2,21 @@
 
 ```
 Interface (RJ45) 
+ECU Side (5V PMW twisted pairs: +signal, -signal)
+                    ↓
+Interface (RJ45) 
 DYNO Side (5/10 V domain) (receiver / amplification) 
 --------------------------------------------
-<- (TPS7A4901 14ms start up, 0.1-0.5 Watts | r1=10kOhm & r2=33kOhm) (x)
-RS-422 receiver (Differential input, reject noise) (AM26LS32AIN)
+5V POWER ← (TPS7A4901, 14 ms start-up, 0.1–0.5 W | R1 = 10 kΩ & R2 = 33 kΩ)
     ↓
-RC low-pass  (50 Hz) (PWM to DC voltage conversion) (x)
+RS-422 receiver (Differential input, rejects noise) (AM26LS32AIN)
     ↓
-Op-amp 2x Gain (Scales to 0-10V) (TLV272) (x) 
+RC low-pass filter (50 Hz) (PWM to DC voltage conversion)
+    ↓
+Op-amp 2× Gain (Scales to 0–10 V) (TLV272) ← 12 V POWER
 ---------------------------------------------
-Interface (jst xh 4 pin 2.5)
-
+Interface (JST XH 4-pin 2.5 mm)
                     ↓
+Interface (4-pin barrel jack) (Unknown Specifics)
 DYNO Controller (Analog 10V Input)
 ```

@@ -3,10 +3,10 @@
 > [!important]
 > Assumed Configuration:
 > - PSC = 0
-> - RC Characteristics: 2kΩ, 1.6µF
+> - RC Characteristics: 2 kΩ, 1.6 µF
 > - Clock Speed: 160 MHz on TIM1_CH1N (APB2)
 > - APB2 (Scale of 2x) → PCLK2 (80 MHz) → 160 MHz
-> - These values will be different if R7 and C9 are populated with (47Ω | 100nf, etc)
+> - These values will be different if R7 and C9 are populated with (47 Ω | 100 nf, etc.)
 
 ## Initial Calibration Row (10 kHz)
 
